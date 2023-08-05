@@ -122,3 +122,8 @@ app.get("/webhook", (req, res) => {
     }
   }
 });
+app.get('/', function (req, res) {
+  console.log("Cloud Api Whatsapp Puriy Request headers: ");
+  res.send('Hello World')
+  
+})
