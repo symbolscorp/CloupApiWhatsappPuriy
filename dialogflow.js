@@ -13,7 +13,7 @@ const sessionClient = new dialogflow.SessionsClient({
 
 /**
  * Send a query to the dialogflow agent, and return the query result.
- * @param {string} projectId The project to be used
+ * @param {string} projectId The project to be use
  */
 async function sendToDialogFlow(msg, session, params) {
   let textToDialogFlow = msg;
