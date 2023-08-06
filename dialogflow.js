@@ -1,4 +1,4 @@
-const dialogflow = require("@google-cloud/dialogflow");
+const dialogflow = require("dialogflow");
 const config = require("./config");
 
 const credentials = {
@@ -15,7 +15,7 @@ const sessionClient = new dialogflow.SessionsClient({
  * Send a query to the dialogflow agent, and return the query result.
  * @param {string} projectId The project to be use
  */
-async function sendToDialogFlow(msg, session, params) {
+async function sendToDialogFlow(msg, session, params){
   let textToDialogFlow = msg;
   try {
     const sessionPath = sessionClient.sessionPath(

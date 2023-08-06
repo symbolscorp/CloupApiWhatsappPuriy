@@ -10,9 +10,10 @@
 // Access token for your app
 // (copy token from DevX getting started page
 // and save it as environment variable into the .env file)
-const token = process.env.WHATSAPP_TOKEN;
-const dialogflow = require('./dialogflow');
 
+const dialogflow = require('./dialogflow');
+const config = require("./config");
+const token = config.WHATSAPP_TOKEN//process.env.WHATSAPP_TOKEN;
 // Imports dependencies and set up http server
 const request = require("request"),
   express = require("express"),
@@ -21,7 +22,7 @@ const request = require("request"),
   app = express().use(body_parser.json()); // creates express http server
 
 // Sets server port and logs message on success
-app.listen(process.env.PORT || 1337, () => console.log("webhook is listening"));
+app.listen(config.PORT || 1337, () => console.log("webhook is listening"));
 
 // Accepts POST requests at /webhook endpoint
 app.post("/webhook", async (req, res) => {
@@ -102,7 +103,7 @@ app.get("/webhook", (req, res) => {
    * UPDATE YOUR VERIFY TOKEN
    *This will be the Verify Token value when you set up webhook
   **/
-  const verify_token = process.env.VERIFY_TOKEN;
+  const verify_token = config.VERIFY_TOKEN//process.env.VERIFY_TOKEN;
 
   // Parse params from the webhook verification request
   let mode = req.query["hub.mode"];
@@ -123,7 +124,7 @@ app.get("/webhook", (req, res) => {
   }
 });
 app.get('/', function (req, res) {
+  const verify_token = config.VERIFY_TOKEN;
   console.log("Cloud Api Whatsapp Puriy Request headers: ");
-  res.send('Hello World')
-  
+  res.send('Hello World' + verify_token)
 })
